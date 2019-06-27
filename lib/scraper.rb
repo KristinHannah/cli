@@ -1,5 +1,5 @@
 class Scraper 
-  BASE_URL = 'https://www.marketwatch.com/investing/stock/'
+  BASE_URL = 'https://www.astrology.com/horoscope/daily.html'
 
   def self.scrape_titles
     html = open(BASE_URL)
@@ -14,8 +14,8 @@ class Scraper
     end
   end
 
-  def self.scrape_info(movie)
-    url = movie.url
+  def self.scrape_info(sign)
+    url = sign.url
     html = Nokogiri.HTML(open(url))
     # binding.pry
     
