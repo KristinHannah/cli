@@ -18,9 +18,10 @@ class Scraper
     url = movie.url
     html = Nokogiri.HTML(open(url))
     # binding.pry
-    details =
-      html.css('ul.movie-details__detail li')[2].text.split(',').map(&:strip)
-    movie.rating = details[0]
-    movie.length = details[1]
+    
+   sign.date = html.css("div.grid-new grid-right-sidebar p span.date").text
+   sign.horoscope = html.css("div.grid-new grid-right-sidebar p").text
+    #details =
+    #  html.css('ul.movie-details__detail li')[2].text.split(',').map(&:strip)
   end
 end
