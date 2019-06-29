@@ -25,3 +25,5 @@ class Scraper
     #  html.css('ul.movie-details__detail li')[2].text.split(',').map(&:strip)
   end
 end
+
+Scraper.scrape_titles
