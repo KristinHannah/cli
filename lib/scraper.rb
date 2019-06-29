@@ -1,10 +1,13 @@
 class Scraper 
-  BASE_URL = 'https://www.astrology.com/horoscope/daily.html'
 
+  def get_url
+    html = Nokogiri.HTML(open("https://www.astrology.com/horoscope/daily.html"))
+    html
+    binding.pry
+  end 
+  
   def self.scrape_titles
-    html = open(BASE_URL)
-    doc = Nokogiri.HTML(html)
-    signs = doc.css("div.grid-new grid-3 div.item")
+    signs = self.get_url.css("div.grid-new grid-3 div.item")
     signs.each do |item|
       input_args = {
         title: item.css('h2').text.strip,
