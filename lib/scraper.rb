@@ -1,30 +1,30 @@
 require "nokogiri"
 require "open-uri"
 require "pry"
-require_relative "./sign.rb"
-
+require_relative "../lib/sign.rb"
+require_relative "../lib/cli.rb"
 
 class Scraper 
 
   def self.getUrl
     html = Nokogiri::HTML(open("https://www.horoscope.com/us/index.aspx"))
     html
+    binding.pry
   end 
   
-  def self.scrape_titles
-    signsList = self.getUrl.css("section.choose-zodiac div.grid grid-6 a")
-    signsList.each do |item|
-      input_args = {
-        sign: item.css('h3').text.strip,
-        url: item.css('a')[0].attr('href'),
-        dates: item.css('p').text.strip
+  def self.scrape_index_page
+    signs_list = []
+   self.getUrl.css("div.grid.grid-6 a").each do |item|
+      signs_list << {
+        :sign => item.css('h3').text,
+      # need to figure out this one  :url => item.css(attr('href')).value,
+        :dates => item.css('p').text
       }
-      Sign.new(input_args)
-      binding.pry
     end
-    Sign.all
+    signs_list
   end
-
+  
+  
   def self.scrape_info(sign)
     url = sign.url
     html = Nokogiri.HTML(open(url))
@@ -37,6 +37,5 @@ class Scraper
   end
 end
 
-Scraper.scrape_titles
-Sign.all
+Scraper.scrape_index_page
 

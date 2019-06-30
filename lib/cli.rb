@@ -1,3 +1,9 @@
+require "nokogiri"
+require "open-uri"
+require "pry"
+require_relative "./sign.rb"
+require_relative "./cli.rb"
+
 class CLI 
   
   def run
