@@ -12,8 +12,8 @@ class Scraper
   end 
   
   def self.scrape_titles
-    signs = self.getUrl.css("section.choose-zodiac div.grid grid-6 a")
-    signs.each do |item|
+    signsList = self.getUrl.css("section.choose-zodiac div.grid grid-6 a")
+    signsList.each do |item|
       input_args = {
         sign: item.css('h3').text.strip,
         url: item.css('a')[0].attr('href'),
