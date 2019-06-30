@@ -12,11 +12,12 @@ class Scraper
   end 
   
   def self.scrape_titles
-    signs = self.getUrl.css("div.grid-new grid-3 div.item")
+    signs = self.getUrl.css("section.choose-zodiac div.grid grid-6 a")
     signs.each do |item|
       input_args = {
-        title: item.css('h2').text.strip,
-        url: item.css('a')[0].attr('href')
+        sign: item.css('h3').text.strip,
+        url: item.css('a')[0].attr('href'),
+        dates: item.css('p').text.strip
       }
       Sign.new(input_args)
     end
