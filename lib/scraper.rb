@@ -1,6 +1,7 @@
 require "nokogiri"
 require "open-uri"
 require "pry"
+require_relative "./sign.rb"
 
 
 class Scraper 
@@ -8,7 +9,6 @@ class Scraper
   def self.getUrl
     html = Nokogiri::HTML(open("https://www.horoscope.com/us/index.aspx"))
     html
-    binding.pry
   end 
   
   def self.scrape_titles
@@ -20,7 +20,9 @@ class Scraper
         dates: item.css('p').text.strip
       }
       Sign.new(input_args)
+      binding.pry
     end
+    Sign.all
   end
 
   def self.scrape_info(sign)
@@ -36,3 +38,5 @@ class Scraper
 end
 
 Scraper.scrape_titles
+Sign.all
+
