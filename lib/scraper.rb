@@ -17,7 +17,7 @@ class Scraper
    self.getUrl.css("div.grid.grid-6 a").each do |item|
       signs_list << {
         :sign => item.css('h3').text,
-      # need to figure out this one  :url => item.css(attr('href')).value,
+        :url => "https://www.horoscope.com" + item.attribute('href').value,
         :dates => item.css('p').text
       }
     end
