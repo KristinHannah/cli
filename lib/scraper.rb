@@ -25,9 +25,10 @@ class Scraper
   
   
   def self.scrape_info(sign)
-    url = sign.url
-    html = Nokogiri.HTML(open(url))
-    
+  #  url = sign.url
+  #  html = Nokogiri.HTML(open(url))
+  html = Nokogiri.HTML(open(sign))
+    binding.pry
    sign.date = html.css("div.grid.grid-right-sidebar div p strong.date").text
    
       horoscopeAllText = html.css("div.grid.grid-right-sidebar div p").text
@@ -36,6 +37,9 @@ class Scraper
       horoscope_split = horoscope_text.split("Confused about")
       horoscope_only = horoscope_split[0]
    sign.horoscope = horoscope_only
+   
+   link_info = html.css("div.grid.grid-right-sidebar div.more-btns.more-horoscopes a#src-horo-btn-love").attribute('href').value
+    sign.love_link = "https://www.horoscope.com" + link_info
   end
 end
 
