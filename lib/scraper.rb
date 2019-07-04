@@ -42,10 +42,8 @@ class Scraper
   end
   
   def self.scrape_love_info(sign)
-   # url = sign.love_link
-   # html = Nokogiri.HTML(open(url))
-   html = Nokogiri.HTML(open(sign))
-   binding.pry
+    url = sign.love_link
+    html = Nokogiri.HTML(open(url))
    
       loveFullText = html.css("div.grid.grid-right-sidebar p").text
       loveArray1 = loveFullText.split(" - ")
