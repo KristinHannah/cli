@@ -9,7 +9,6 @@ class Scraper
   def self.getUrl
     html = Nokogiri::HTML(open("https://www.horoscope.com/us/index.aspx"))
     html
-    binding.pry
   end 
   
   def self.scrape_index_page
@@ -28,14 +27,18 @@ class Scraper
   def self.scrape_info(sign)
     url = sign.url
     html = Nokogiri.HTML(open(url))
-    # binding.pry
     
-   sign.date = html.css("div.grid-new grid-right-sidebar p span.date").text
-   sign.horoscope = html.css("div.grid-new grid-right-sidebar p").text
-    #details =
-    #  html.css('ul.movie-details__detail li')[2].text.split(',').map(&:strip)
+   sign.date = html.css("div.grid.grid-right-sidebar div p strong.date").text
+   
+      horoscopeAllText = html.css("div.grid.grid-right-sidebar div p").text
+      allTextArray = horoscopeAllText.split(" - ")
+      horoscope_text = allTextArray[1]
+      horoscope_split = horoscope_text.split("Confused about")
+      horoscope_only = horoscope_split[0]
+   sign.horoscope = horoscope_only
   end
 end
 
 Scraper.scrape_index_page
+Scraper.scrape_info("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=1")
 
