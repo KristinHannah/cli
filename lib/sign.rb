@@ -5,7 +5,7 @@ require_relative "./scraper.rb"
 require_relative "./cli.rb"
 
 class ZodiacSign
-  attr_accessor :sign, :dates, :url, :horoscope
+  attr_accessor :sign, :sign_dates, :url, :horoscope, :love_link, :today_date, :love_scope
   @@all = []
   
   def initialize(sign_hash)

@@ -17,7 +17,7 @@ class Scraper
       signs_list << {
         :sign => item.css('h3').text,
         :url => "https://www.horoscope.com" + item.attribute('href').value,
-        :dates => item.css('p').text
+        :sign_dates => item.css('p').text
       }
     end
     signs_list
@@ -25,11 +25,10 @@ class Scraper
   
   
   def self.scrape_info(sign)
-  #  url = sign.url
-  #  html = Nokogiri.HTML(open(url))
-  html = Nokogiri.HTML(open(sign))
-    binding.pry
-   sign.date = html.css("div.grid.grid-right-sidebar div p strong.date").text
+  url = sign.url
+  html = Nokogiri.HTML(open(url))
+  
+   sign.today_date = html.css("div.grid.grid-right-sidebar div p strong.date").text
    
       horoscopeAllText = html.css("div.grid.grid-right-sidebar div p").text
       allTextArray = horoscopeAllText.split(" - ")
@@ -38,11 +37,25 @@ class Scraper
       horoscope_only = horoscope_split[0]
    sign.horoscope = horoscope_only
    
-   link_info = html.css("div.grid.grid-right-sidebar div.more-btns.more-horoscopes a#src-horo-btn-love").attribute('href').value
-    sign.love_link = "https://www.horoscope.com" + link_info
+       link_info = html.css("div.grid.grid-right-sidebar div.more-btns.more-horoscopes a#src-horo-btn-love").attribute('href').value
+   sign.love_link = "https://www.horoscope.com" + link_info
   end
+  
+  def self.scrape_love_info(sign)
+   # url = sign.love_link
+   # html = Nokogiri.HTML(open(url))
+   html = Nokogiri.HTML(open(sign))
+   binding.pry
+   
+      loveFullText = html.css("div.grid.grid-right-sidebar p").text
+      loveArray1 = loveFullText.split(" - ")
+      horo = loveArray1[1]
+      horoSplit = horo.split("Meet highly")
+   sign.love_scope = horoSplit[0]
+    
+  end 
+    
 end
 
 Scraper.scrape_index_page
-Scraper.scrape_info("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=1")
-
+Scraper.scrape_love_info("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-today.aspx?sign=1")
