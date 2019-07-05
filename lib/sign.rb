@@ -24,6 +24,9 @@ class ZodiacSign
     end 
   end 
   
-  def 
+   def add_attributes(attributes_hash)
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+  end
+  
 end 
 
