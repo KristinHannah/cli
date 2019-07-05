@@ -17,4 +17,4 @@ class CLI
   
 end 
 
-CLI.make_signs
+#CLI.make_signs

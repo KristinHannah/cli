@@ -15,13 +15,15 @@ class ZodiacSign
   
   def self.all 
     @@all
+    binding.pry
   end 
   
   def self.create_from_collection(signs_array)
-        signs_array.each do |attr|
-        self.new(attr)
-      end 
+      signs_array.each do |attr|
+      self.new(attr)
     end 
+  end 
   
-  
+  def 
 end 
+

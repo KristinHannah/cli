@@ -55,5 +55,5 @@ class Scraper
     
 end
 
-Scraper.scrape_index_page
-Scraper.scrape_love_info("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-today.aspx?sign=1")
+# Scraper.scrape_index_page
+# Scraper.scrape_love_info("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-today.aspx?sign=1")
