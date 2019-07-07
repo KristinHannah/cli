@@ -20,8 +20,7 @@ class Scraper
         :sign_dates => item.css('p').text
       }
     end
-    signs_list
-    binding.pry
+   signs_list
   end
   
   
@@ -44,6 +43,7 @@ class Scraper
    sign_atts[:love_link] = "https://www.horoscope.com" + link_info
    
    sign_atts
+   binding.pry
   end
   
   def self.scrape_love_info(sign)
@@ -57,6 +57,7 @@ class Scraper
       horoSplit = horo.split("Meet highly")
    sign_att[:love_scope] = horoSplit[0]
    sign_att
+   binding.pry
   end 
     
 end
