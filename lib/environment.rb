@@ -5,4 +5,4 @@ require_relative ".cli/version"
   # Your code goes here...
 # end
 
-require_relative '../lib/cli.rb'
+require_relative '.cli/cli.rb'
