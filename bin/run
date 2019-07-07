@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby 
 
-require_relative '../lib/environment'
-#require_relative '../config/environment'
+require "./lib/cli/version.rb"
+
+Horoscopes::CLI.new.call
+
+require_relative '../lib/environment.rb'
 
 app = CLI.new
 app.run
