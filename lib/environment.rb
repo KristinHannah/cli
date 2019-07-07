@@ -5,5 +5,5 @@ module Cli
   # Your code goes here...
 end
 
-
+require_all 'lib'
 require_relative './cli'

@@ -1,8 +1,8 @@
+
 require "nokogiri"
 require "open-uri"
 require "pry"
-require_relative "../lib/sign.rb"
-require_relative "../lib/cli.rb"
+
 
 class Scraper 
 
@@ -50,7 +50,6 @@ class Scraper
       horo = loveArray1[1]
       horoSplit = horo.split("Meet highly")
    sign.love_scope = horoSplit[0]
-    
   end 
     
 end
